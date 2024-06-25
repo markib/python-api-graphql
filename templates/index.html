@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FlaskBlask</title>
+</head>
+
+<body>
+    <h2>Welcome To Clumbler!</h2>
+    <h4>Flask: Rendering Templates</h4>
+
+    <a href="{{ url_for('list') }}">List</a>
+    <a href="{{ url_for('create') }}">Create</a>
+    <a href="{{ url_for('update') }}">Update</a>
+    <!-- this section can be replaced by a child document -->
+    {% block body %}
+
+
+<ul>
+    {% for data in datas %}
+    <li>{{ data["title"] }}</li>
+    {% endfor %}
+</ul>
+
+    {% endblock %}
+
+
+</body>
+
+</html>
