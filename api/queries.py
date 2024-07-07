@@ -20,7 +20,7 @@ def listPosts_resolver(obj, info):
         #     },
         # ]
         # posts = Post.findAll()
-        print(posts)
+        # print(posts)
         payload = {"success": True, "posts": posts}
     except Exception as error:
         # Log the exception for debugging purposes

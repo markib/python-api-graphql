@@ -11,7 +11,10 @@ def create_post_resolver(obj, info, title, description):
     try:
         today = date.today()
         post = Post(
-            title=title, description=description, created_at=today.strftime("%b-%d-%Y")
+            title=title,
+            description=description,
+            created_at=today.strftime("%b-%d-%Y"),
+            updated_at=today.strftime("%b-%d-%Y"),
         )
         db.session.add(post)
         db.session.commit()
@@ -31,10 +34,12 @@ def create_post_resolver(obj, info, title, description):
 @convert_kwargs_to_snake_case
 def update_post_resolver(obj, info, id, title, description):
     try:
+        today = date.today()
         post = Post.query.get(id)
         if post:
             post.title = title
             post.description = description
+            post.created_at = today.strftime("%b-%d-%Y")
         db.session.add(post)
         db.session.commit()
         payload = {"success": True, "post": post.to_dict()}

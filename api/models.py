@@ -6,6 +6,7 @@ class Post(db.Model):
     title = db.Column(db.String)
     description = db.Column(db.String)
     created_at = db.Column(db.Date)
+    updated_at = db.Column(db.Date)
 
     def to_dict(self):
         return {
@@ -13,4 +14,5 @@ class Post(db.Model):
             "title": self.title,
             "description": self.description,
             "created_at": str(self.created_at.strftime("%d-%m-%Y")),
+            "updated_at":self.updated_at
         }

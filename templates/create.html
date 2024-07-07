@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% block content %}
+<h1>Update Post</h1>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+        {% endfor %}
+
+{% endif %}
+{% endwith %}
+   
+<form method="POST" action="{{url_for('create')}}">
+    {{ form.csrf_token }}
+    {{form.title.label}}
+    {{form.title(class='', id="title")}}
+    {{form.description.label}}
+    {{form.description(class='', id="description")}}
+    {% for error in form.title.errors %}
+    <span class="">{{ error }}</span>
+    {% endfor %}
+    {{form.submit}}
+   
+</form>
+ 
+ 
+{% endblock %}
