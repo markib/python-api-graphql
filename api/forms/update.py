@@ -1,6 +1,6 @@
 # from wtforms.csrf.session import SessionCSRF
 # from datetime import timedelta
-from wtforms import StringField, validators, SubmitField
+from wtforms import StringField, validators, SubmitField, IntegerField
 from flask_wtf import FlaskForm
 
 # class MyBaseForm(FlaskForm):
@@ -11,9 +11,10 @@ from flask_wtf import FlaskForm
 #         csrf_time_limit = timedelta(minutes=20)
 
 
-class PostCreateForm(FlaskForm):
+class PostUpdateForm(FlaskForm):
     title = StringField('Title',[validators.InputRequired(
         message="Title should not be empty."
     )])
     description = StringField('Description')
-    submit = SubmitField('Create') 
+    id = IntegerField('id')
+    submit = SubmitField('Save') 

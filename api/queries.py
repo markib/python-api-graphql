@@ -4,7 +4,7 @@ from ariadne import convert_kwargs_to_snake_case
 
 def listPosts_resolver(obj, info):
     try:
-        posts = [post.to_dict() for post in Post.query.all()]
+        posts = [post.to_dict() for post in Post.query.order_by(Post.id.asc()).all()]
         # posts = [
         #     {
         #         "id": "1",

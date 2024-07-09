@@ -1,13 +1,30 @@
 <h1>Update Post</h1>
-<form id="updatePostForm">
-    <label for="postId">Post ID:</label>
-    <input type="number" id="postId" name="postId" required><br><br>
+{% extends 'index.html' %}
+{% block content %}
+<h1>Update Post</h1>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
 
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" required><br><br>
+    {% endif %}
+    {% endwith %}
+    
+    <form method="POST" >
+        {{ form.csrf_token }}
+        {{form.id(id="id" ,type= "hidden" ,value=datas['id'] )}}   
+        {{form.title.label}}
+        {{form.title(id="title" ,value=datas['title'] )}}
+        {{form.description.label}}
+        {{form.description(class='', id="description" ,value=datas['description'])}}
+        {% for error in form.title.errors %}
+        <span class="">{{ error }}</span>
+        {% endfor %}
+        {{form.submit}}
 
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" required></textarea><br><br>
+    </form>
 
-    <button type="submit">Update Post</button>
-</form>
+
+    {% endblock %}

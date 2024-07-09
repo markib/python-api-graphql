@@ -1,8 +1,16 @@
 {% extends 'index.html' %}
 {% block content %}
-<ul>
-    {% for data in datas %}
-    <li>{{ data["title"] }}</li>
+
+
+    {% for key,data in enumerate(datas) %}
+    
+    <ul>
+        <li>
+            <a href="{{ url_for('update',id=data['id']) }}">{{ data['title'] }}</a>
+            <a href="{{ url_for('delete',id=data['id']) }}">Delete</a>
+        </li>
+    </ul>
+    
     {% endfor %}
-</ul>
+
 {% endblock %}
